@@ -8,7 +8,7 @@ interface Book{
 export function Book(book:Book){
 
     return(
-        <Card sx={{backgroundColor:"#DFF6FF", marginBottom:"20px"}}>
+        <Card sx={{backgroundColor:"#DFF6FF", margin:"10px", width:"250px", display:"inline-block"}}>
             <CardContent>
                 <Typography sx={{fontSize: 16}} color="text.secondary" gutterBottom>Book</Typography>
                 <Typography variant="h5" >{book.title}</Typography>
