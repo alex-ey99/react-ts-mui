@@ -1,5 +1,5 @@
-import {MenuBook, ShoppingCart } from "@mui/icons-material";
-import { AppBar, Badge, Box, Link, styled, Toolbar, Typography } from "@mui/material";
+import { Favorite, Movie, ShoppingCart } from "@mui/icons-material";
+import {  AppBar, Badge, Box, Link, styled, Toolbar, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Button from '@mui/material/Button';
 
@@ -20,12 +20,12 @@ export function Navbar(){
                     <Typography variant="body1" sx={{display:{xs:"none",sm:"block"}}}>
                         Library
                     </Typography>
-                    <MenuBook sx={{display:{xs:"block",sm:"none"}}}/>
+                    <Movie sx={{display:{xs:"block",sm:"none"}}}/>
                     <Button component={NavLink} to="/">Home</Button>
                     <Button component={NavLink} to="/about" >About</Button>
                     <Button component={NavLink} to="/store" >Store</Button>
                     <Badge badgeContent={3} color="primary">
-                        <ShoppingCart color="action"/>
+                        <Favorite color="action"/>
                     </Badge>
                 </StyledToolbar>
                 
