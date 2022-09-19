@@ -33,6 +33,7 @@ const CustomModal = styled(Modal)({
     alignItems: 'center',
     justifyContent: 'center'
 });
+
 const movieExample:MovieDetails = {
     "Title": "string",
     "Year": "string",
@@ -62,7 +63,10 @@ export function Movie(movie:MovieInterface){
         setOpen(true);
     
     }
+    
     const [open,setOpen] = useState<boolean>(false);
+    const [favorite,setFavorite] = useState<string>("primary");
+
     return(
 
         <Card sx={{backgroundColor:"#DFF6FF", margin:"10px", width:"300px", display:"inline-block"}}>
@@ -80,11 +84,10 @@ export function Movie(movie:MovieInterface){
                 {/* <img src={movie.Poster}></img> */}
             </CardContent>
             <CardActions>
-                <Button size="small" onClick={(e)=>getMovieDetails(movie.imdbID)}> Learn More</Button>
-                <Button variant="outlined" startIcon={<Favorite />}>
+                <Button size="small" onClick={()=>getMovieDetails(movie.imdbID)}> Learn More</Button>
+                <Button color={favorite} onClick={()=>{favorite==="primary"?setFavorite("error"):setFavorite("primary")}} variant="outlined" startIcon={<Favorite />}>
                     Favorite
                 </Button>
-       
                 <CustomModal
                     open={open}
                     onClose={()=>setOpen(false)}

@@ -10,7 +10,6 @@ const StyledToolbar = styled(Toolbar)({
 })
 
 
-
 export function Navbar(){
     return (
         
@@ -24,7 +23,7 @@ export function Navbar(){
                     <Button component={NavLink} to="/">Home</Button>
                     <Button component={NavLink} to="/about" >About</Button>
                     <Button component={NavLink} to="/store" >Store</Button>
-                    <Badge badgeContent={3} color="primary">
+                    <Badge component={NavLink} to="/favorites" badgeContent={3} color="primary">
                         <Favorite color="action"/>
                     </Badge>
                 </StyledToolbar>

@@ -6,6 +6,8 @@ import {Store} from "./pages/Store";
 import {Navbar} from "./components/Navbar";
 import { Box, Button, createTheme, ThemeProvider } from '@mui/material';
 import { blue, orange } from '@mui/material/colors';
+import { Favorites } from './pages/Favorites';
+
 
 // https://mui.com/material-ui/customization/default-theme/
 
@@ -29,6 +31,7 @@ function App() {
             <Route path="/" element={<Home/>}/>
             <Route path="/store" element={<Store/>}/>
             <Route path="/about" element={<About/>}/>
+            <Route path="/favorites" element={<Favorites/>}/>
         </Routes>
       </Box>
     // </ThemeProvider>

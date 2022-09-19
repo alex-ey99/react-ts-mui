@@ -11,6 +11,7 @@ export function Store() {
     const [movies,setMovies] = useState<MovieInterface[]>([]);
     const [search,setSearch] = useState<string>("");
     
+
     async function getMovies(title:string){
         const response = await fetch(`${API_URL}${title}&type=movie`);
         const data =  await response.json();
@@ -23,7 +24,7 @@ export function Store() {
         getMovies('batman');
         console.log("got movies");
     },[]);
-
+   
     return (
 
         <Box sx={{margin:"20px 20px"}}>
@@ -35,6 +36,9 @@ export function Store() {
                 <Search />
             </IconButton>
             <br></br>
+            
+
+
             {movies.map((movie, index)=>(
                 <Movie key={index} {...movie} />
             ))}
