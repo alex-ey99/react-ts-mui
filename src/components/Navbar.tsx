@@ -2,6 +2,8 @@ import { Favorite, Movie, ShoppingCart } from "@mui/icons-material";
 import {  AppBar, Badge, Box, Link, styled, Toolbar, Typography } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Button from '@mui/material/Button';
+import { useContext } from "react";
+import { useFavorite } from "../context/FavoriteContext";
 
 const StyledToolbar = styled(Toolbar)({
     display: "flex",
@@ -11,6 +13,7 @@ const StyledToolbar = styled(Toolbar)({
 
 
 export function Navbar(){
+    const fav = useFavorite();
     return (
         
             <AppBar position="sticky" sx={{backgroundColor: "white", color:"black"}}>
@@ -23,15 +26,17 @@ export function Navbar(){
                     <Button component={NavLink} to="/">Home</Button>
                     <Button component={NavLink} to="/about" >About</Button>
                     <Button component={NavLink} to="/store" >Store</Button>
-                    <Badge component={NavLink} to="/favorites" badgeContent={3} color="primary">
+                    <Badge component={NavLink} to="/favorites" badgeContent={fav.favCount} color="primary">
                         <Favorite color="action"/>
                     </Badge>
                 </StyledToolbar>
                 
             </AppBar>
             
-    
-       
         
     )
 }
+
+
+
+  

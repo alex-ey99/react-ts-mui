@@ -3,6 +3,8 @@ import styled from "@emotion/styled";
 import { Favorite } from "@mui/icons-material";
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Modal, Typography } from "@mui/material";
 import { useState } from "react";
+import { useFavorite } from "../context/FavoriteContext";
+
 
 
 export interface MovieInterface{
@@ -66,7 +68,21 @@ export function Movie(movie:MovieInterface){
     
     const [open,setOpen] = useState<boolean>(false);
     const [favorite,setFavorite] = useState<string>("primary");
+    const fav = useFavorite();
 
+    function handleClick(){
+    //    favorite==="primary"?setFavorite("error"):setFavorite("primary");
+       if(favorite==="primary"){
+        setFavorite("error");
+        fav.increaseFav();
+
+       }
+       else{
+        setFavorite("primary");
+        fav.decreaseFav();
+       }
+       
+    }
     return(
 
         <Card sx={{backgroundColor:"#DFF6FF", margin:"10px", width:"300px", display:"inline-block"}}>
@@ -81,11 +97,11 @@ export function Movie(movie:MovieInterface){
                 <Typography sx={{fontSize: 16}} color="text.secondary" gutterBottom>Movie</Typography>
                 <Typography variant="h5" sx={{overflow:"hidden", whiteSpace:"nowrap", textOverflow:"ellipsis"}}>{movie.Title}</Typography>
                 <Typography color="text.secondary" component="div" >{movie.Year}</Typography>
-                {/* <img src={movie.Poster}></img> */}
+                
             </CardContent>
             <CardActions>
                 <Button size="small" onClick={()=>getMovieDetails(movie.imdbID)}> Learn More</Button>
-                <Button color={favorite} onClick={()=>{favorite==="primary"?setFavorite("error"):setFavorite("primary")}} variant="outlined" startIcon={<Favorite />}>
+                <Button color={favorite} onClick={()=>handleClick()} variant="outlined" startIcon={<Favorite />}>
                     Favorite
                 </Button>
                 <CustomModal
