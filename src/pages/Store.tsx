@@ -1,7 +1,7 @@
 
 import { Search} from "@mui/icons-material";
-import {Box, Button, IconButton, TextField, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import {Box,IconButton, TextField, Typography } from "@mui/material";
+import {useState } from "react";
 import { Movie, MovieInterface} from "../components/Movie";
 
 
@@ -37,7 +37,7 @@ export function Store() {
 
 
             {movies.map((movie, index)=>(
-                <Movie key={index} {...movie} newFav={true}/>
+                <Movie key={index} {...movie}/>
             ))}
 
         </Box>

@@ -1,7 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { useState } from "react";
 import { FavMovie } from "../components/FavMovie";
-import { Movie, MovieInterface } from "../components/Movie";
 import { useFavorite } from "../context/FavoriteContext";
 
 export function Favorites(){

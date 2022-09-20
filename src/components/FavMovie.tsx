@@ -1,7 +1,7 @@
 
 
 import { Delete } from "@mui/icons-material";
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Modal, Typography } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import { useState } from "react";
 import { useFavorite } from "../context/FavoriteContext";
 import { CustomModal, MovieDetails, movieExample, MovieInterface } from "./Movie";

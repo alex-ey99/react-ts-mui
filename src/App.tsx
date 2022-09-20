@@ -4,7 +4,7 @@ import {Home} from "./pages/Home";
 import {About} from "./pages/About";
 import {Store} from "./pages/Store";
 import {Navbar} from "./components/Navbar";
-import { Box, Button, createTheme, ThemeProvider } from '@mui/material';
+import { Box, createTheme} from '@mui/material';
 import { Favorites } from './pages/Favorites';
 import { FavoriteProvider } from './context/FavoriteContext';
 

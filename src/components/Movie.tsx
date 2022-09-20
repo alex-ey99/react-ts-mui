@@ -13,7 +13,6 @@ export interface MovieInterface{
     "imdbID": string;
     "Type": string;
     "Poster": string;
-    "newFav": boolean;
 }
 export interface MovieDetails{
     "Title": string;
@@ -53,6 +52,8 @@ export const movieExample:MovieDetails = {
     "Awards": "string",
     "Poster": "string"
 }
+type favoriteType = "primary" | "error";
+
 export function Movie(movie:MovieInterface){
     const API_URL: string = "http://www.omdbapi.com/?apikey=b1d991df&i=";
     const [movieDetails,setMovieDetails] = useState<MovieDetails>(movieExample);
@@ -67,7 +68,7 @@ export function Movie(movie:MovieInterface){
     }
     
     const [open,setOpen] = useState<boolean>(false);
-    const [favorite,setFavorite] = useState<string>("primary");
+    const [favorite,setFavorite] = useState<favoriteType>("primary");
     const fav = useFavorite();
 
     useEffect(()=>{
