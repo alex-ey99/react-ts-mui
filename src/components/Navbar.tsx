@@ -19,13 +19,13 @@ export function Navbar(){
                 <StyledToolbar>
                     
                     <Typography variant="body1" sx={{display:{xs:"none",sm:"block"}}}>
-                        Library
+                        MovieSearch
                     </Typography>
                     <Movie sx={{display:{xs:"block",sm:"none"}}}/>
                     <Button component={NavLink} to="/">Home</Button>
                     <Button component={NavLink} to="/about" >About</Button>
-                    <Button component={NavLink} to="/store" >Store</Button>
-                    <Badge component={NavLink} to="/favorites" badgeContent={fav.favCount} color="primary">
+                    <Button component={NavLink} to="/movielibrary" >Movie Library</Button>
+                    <Badge component={NavLink} to="/favorites" badgeContent={fav.favCount} color="error">
                         <Favorite color="action"/>
                     </Badge>
                 </StyledToolbar>

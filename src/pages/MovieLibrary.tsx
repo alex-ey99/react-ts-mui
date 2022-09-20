@@ -5,7 +5,7 @@ import {useState } from "react";
 import { Movie, MovieInterface} from "../components/Movie";
 
 
-export function Store() {
+export function MovieLibrary() {
     const API_URL: string = "http://www.omdbapi.com/?apikey=b1d991df&s=";
     // http://www.omdbapi.com/?apikey=b1d991df&s=batman&type=movie
     const [movies,setMovies] = useState<MovieInterface[]>([]);
@@ -26,7 +26,7 @@ export function Store() {
 
         <Box sx={{margin:"20px 20px"}}>
             
-            <Typography variant="h3" sx={{padding:"20px"}}>Store</Typography>
+            <Typography variant="h3" sx={{padding:"20px"}}>Movie Library</Typography>
             
             <TextField id="outlined-basic" label="Search for Movie" variant="outlined" value={search} onChange={(e)=>{setSearch(e.target.value)}} sx={{display:"inline-block", margin:"10px"}}/>
             <IconButton sx={{padding:"25px"}} onClick={()=>{getMovies(search)}}>

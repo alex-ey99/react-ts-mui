@@ -2,7 +2,7 @@
 import {Routes, Route} from "react-router-dom";
 import {Home} from "./pages/Home";
 import {About} from "./pages/About";
-import {Store} from "./pages/Store";
+import {MovieLibrary} from "./pages/MovieLibrary";
 import {Navbar} from "./components/Navbar";
 import { Box, createTheme} from '@mui/material';
 import { Favorites } from './pages/Favorites';
@@ -32,7 +32,7 @@ function App() {
         <Navbar/>
         <Routes>
           <Route path="/" element={<Home/>}/>
-            <Route path="/store" element={<Store/>}/>
+            <Route path="/movielibrary" element={<MovieLibrary/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/favorites" element={<Favorites/>}/>
         </Routes>
