@@ -43,7 +43,7 @@ export function MovieLibrary() {
         <Box sx={{margin:"20px 20px"}}>
             
             <Typography variant="h3" sx={{padding:"20px"}}>Movie Library</Typography>
-            
+            {show && <Typography  sx={{display:"block", color:"red", margin:"0px 20px"}}>No movie found</Typography>}
             <TextField 
                 id="outlined-basic" 
                 label="Search for Movie" 
@@ -53,10 +53,11 @@ export function MovieLibrary() {
                 onKeyDown={keyDownHandler}
                 sx={{display:"inline-block", margin:"20px"}}
                 />
+                
             <IconButton sx={{margin:"25px 0px 0px 0px", border:"solid"}}  onClick={()=>{if(search!==""){getMovies(search)}}}>
                 <Search />
             </IconButton>
-            {show && <Typography  sx={{display:"inline-block", color:"red"}}>No movie found</Typography>}
+            
             <br></br>
             
 
