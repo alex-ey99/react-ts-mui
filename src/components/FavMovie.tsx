@@ -1,62 +1,16 @@
 
-import styled from "@emotion/styled";
-import { Favorite } from "@mui/icons-material";
+
+import { Delete } from "@mui/icons-material";
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Modal, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFavorite } from "../context/FavoriteContext";
+import { CustomModal, MovieDetails, movieExample, MovieInterface } from "./Movie";
 
 
-
-export interface MovieInterface{
-    "Title": string;
-    "Year": string;
-    "imdbID": string;
-    "Type": string;
-    "Poster": string;
-    "newFav": boolean;
-}
-export interface MovieDetails{
-    "Title": string;
-    "Year": string;
-    "Rated": string;
-    "Released": string;
-    "Runtime": string;
-    "Genre": string;
-    "Director": string;
-    "Writer": string;
-    "Actors": string;
-    "Plot": string;
-    "Language": string;
-    "Country": string;
-    "Awards": string;
-    "Poster": string;
-}
-export const CustomModal = styled(Modal)({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-});
-
-export const movieExample:MovieDetails = {
-    "Title": "string",
-    "Year": "string",
-    "Rated": "string",
-    "Released": "string",
-    "Runtime": "string",
-    "Genre": "string",
-    "Director": "string",
-    "Writer": "string",
-    "Actors": "string",
-    "Plot": "string",
-    "Language": "string",
-    "Country": "string",
-    "Awards": "string",
-    "Poster": "string"
-}
-export function Movie(movie:MovieInterface){
+export function FavMovie(movie:MovieInterface){
     const API_URL: string = "http://www.omdbapi.com/?apikey=b1d991df&i=";
     const [movieDetails,setMovieDetails] = useState<MovieDetails>(movieExample);
-   
+
     async function getMovieDetails(movieId:string){
         const response = await fetch(`${API_URL}${movieId}`);
         const data =  await response.json();
@@ -67,30 +21,17 @@ export function Movie(movie:MovieInterface){
     }
     
     const [open,setOpen] = useState<boolean>(false);
-    const [favorite,setFavorite] = useState<string>("primary");
     const fav = useFavorite();
 
-    useEffect(()=>{
-        if(fav.favMovies.find((element)=> element.imdbID===movie.imdbID)!=null){
-            setFavorite("error");
-        }
-        else{
-            setFavorite("primary");
-        }
-    },[movie])
-
     function handleClick(){
-       if(favorite==="primary"){
-        setFavorite("error");
-        fav.increaseFav(movie);
-
-       }
-       else{
-        setFavorite("primary");
+ 
         fav.decreaseFav(movie);
        }
+      
        
-    }
+       
+       
+    
     return(
 
         <Card sx={{backgroundColor:"#DFF6FF", margin:"10px", width:"300px", display:"inline-block"}}>
@@ -109,8 +50,8 @@ export function Movie(movie:MovieInterface){
             </CardContent>
             <CardActions>
                 <Button size="small" onClick={()=>getMovieDetails(movie.imdbID)}> Learn More</Button>
-                <Button color={favorite} onClick={()=>handleClick()} variant="outlined" startIcon={<Favorite />}>
-                    Favorite
+                <Button onClick={()=>handleClick()} variant="outlined" startIcon={<Delete />}>
+                    Remove
                 </Button>
                 <CustomModal
                     open={open}

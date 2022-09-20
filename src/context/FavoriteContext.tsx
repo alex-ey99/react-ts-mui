@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
+import { MovieInterface } from "../components/Movie";
 
 type FavoriteProviderProps = {
     children: ReactNode;
@@ -6,8 +7,9 @@ type FavoriteProviderProps = {
 
 type favContext = {
     favCount: number
-    increaseFav: () => void
-    decreaseFav: () => void
+    increaseFav: (movie:MovieInterface) => void
+    decreaseFav: (movie:MovieInterface) => void
+    favMovies:  MovieInterface[]
   }
   
 
@@ -21,14 +23,36 @@ export function useFavorite(){ //custom hook
 
 export function FavoriteProvider({children}:FavoriteProviderProps){
     const [favCount, setFavCount]  = useState(0);
-    function increaseFav(){
-        setFavCount(prevCount=>prevCount+1);
+    const [favMovies, setFavMovies] = useState<MovieInterface[]>([]);
+
+    function increaseFav(movie:MovieInterface){
+        setFavMovies(prevFavMovies=>{
+            if(prevFavMovies.find((element)=> element.imdbID === movie.imdbID)== null){
+                setFavCount(prevCount=>prevCount+1);
+                return [...prevFavMovies, movie]
+            }
+            else {
+                return [...prevFavMovies]
+            }
+            
+        });
     }
-    function decreaseFav(){
-        setFavCount(prevCount=>prevCount-1);
+    function decreaseFav(movie:MovieInterface){
+    
+        setFavMovies(prevFavMovies=>{
+            if(prevFavMovies.find((element)=> element.imdbID === movie.imdbID)== null){
+                return [...prevFavMovies]
+            }
+            else {
+                setFavCount(prevCount=>prevCount-1);
+                return prevFavMovies.filter(element=> element.imdbID !==movie.imdbID);
+            }
+
+
+        })
     }
     return (
-    <FavoriteContext.Provider value={{favCount, increaseFav, decreaseFav}}>
+    <FavoriteContext.Provider value={{favCount, increaseFav, decreaseFav, favMovies}}>
         {children}
     </FavoriteContext.Provider>
     )
