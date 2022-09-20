@@ -51,9 +51,9 @@ export function MovieLibrary() {
                 value={search} 
                 onChange={(e)=>{setSearch(e.target.value)}} 
                 onKeyDown={keyDownHandler}
-                sx={{display:"inline-block", margin:"10px"}}
+                sx={{display:"inline-block", margin:"20px"}}
                 />
-            <IconButton sx={{padding:"25px"}} onClick={()=>{if(search!==""){getMovies(search)}}}>
+            <IconButton sx={{margin:"25px 0px 0px 0px", border:"solid"}}  onClick={()=>{if(search!==""){getMovies(search)}}}>
                 <Search />
             </IconButton>
             {show && <Typography  sx={{display:"inline-block", color:"red"}}>No movie found</Typography>}
