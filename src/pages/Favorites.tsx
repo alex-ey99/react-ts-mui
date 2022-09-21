@@ -1,10 +1,13 @@
 import { Box, Grid, Typography } from "@mui/material";
+import { useRecoilValue } from "recoil";
 import { FavMovie } from "../components/FavMovie";
-import { useFavorite } from "../context/FavoriteContext";
+// import { useFavorite } from "../context/FavoriteContext";
+import { favMoviesState } from "../context/FavState";
 
 export function Favorites(){
 
-    const fav = useFavorite();
+    // const fav = useFavorite();
+    const favoriteMovies = useRecoilValue(favMoviesState);
 
     return (
         
@@ -16,7 +19,7 @@ export function Favorites(){
             justifyContent="center"
             alignItems="center"
             >
-                {fav.favMovies.map((movie, index)=>(
+                {favoriteMovies.map((movie, index)=>(
                     <Grid item>
                         <FavMovie key={index} {...movie} />
                     </Grid>

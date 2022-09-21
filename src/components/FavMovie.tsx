@@ -3,13 +3,19 @@
 import { Delete } from "@mui/icons-material";
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
 import { useState } from "react";
-import { useFavorite } from "../context/FavoriteContext";
-import { CustomModal, MovieDetails, movieExample, MovieInterface } from "./Movie";
+import { useRecoilState, useSetRecoilState } from "recoil";
+// import { useFavorite } from "../context/FavoriteContext";
+import { favMoviesState, favState } from "../context/FavState";
+import { decreaseCount, deleteMovie } from "../functions/unfavoriteMovie";
+import { MovieDetails, movieExample } from "../Interfaces/MovieDetails";
+import { MovieInterface } from "../Interfaces/MovieInterface";
+import { CustomModal } from "./Movie";
 
 
 export function FavMovie(movie:MovieInterface){
     const API_URL: string = "http://www.omdbapi.com/?apikey=b1d991df&i=";
     const [movieDetails,setMovieDetails] = useState<MovieDetails>(movieExample);
+    
 
     async function getMovieDetails(movieId:string){
         const response = await fetch(`${API_URL}${movieId}`);
@@ -21,12 +27,21 @@ export function FavMovie(movie:MovieInterface){
     }
     
     const [open,setOpen] = useState<boolean>(false);
-    const fav = useFavorite();
+    // const fav = useFavorite();
+    const [favoriteMovies, setFavoriteMovies] = useRecoilState(favMoviesState);
+    const setFavoriteCount = useSetRecoilState(favState);
 
-    function handleClick(){
+    // function handleClick(){
  
-        fav.decreaseFav(movie);
-       }
+    //     fav.decreaseFav(movie);
+    //    }
+
+    
+
+    function handleClickRecoil(){
+        decreaseCount(movie, favoriteMovies, setFavoriteCount);
+        deleteMovie(movie, setFavoriteMovies);
+    }
       
        
        
@@ -50,7 +65,7 @@ export function FavMovie(movie:MovieInterface){
             </CardContent>
             <CardActions>
                 <Button size="small" onClick={()=>getMovieDetails(movie.imdbID)}> Learn More</Button>
-                <Button onClick={()=>handleClick()} variant="outlined" startIcon={<Delete />}>
+                <Button onClick={()=>handleClickRecoil()} variant="outlined" startIcon={<Delete />}>
                     Remove
                 </Button>
                 <CustomModal

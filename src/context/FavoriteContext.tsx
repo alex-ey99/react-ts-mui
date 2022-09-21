@@ -1,5 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
-import { MovieInterface } from "../components/Movie";
+import { MovieInterface } from "../Interfaces/MovieInterface";
+
 
 type FavoriteProviderProps = {
     children: ReactNode;

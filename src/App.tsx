@@ -6,7 +6,8 @@ import {MovieLibrary} from "./pages/MovieLibrary";
 import {Navbar} from "./components/Navbar";
 import { Box, createTheme} from '@mui/material';
 import { Favorites } from './pages/Favorites';
-import { FavoriteProvider } from './context/FavoriteContext';
+// import { FavoriteProvider } from './context/FavoriteContext';
+import { RecoilRoot } from "recoil";
 
 
 // https://mui.com/material-ui/customization/default-theme/
@@ -27,8 +28,9 @@ function App() {
   return (
    
     //now the entire app has access to everyhting inside the FavoriteProvider
-  <FavoriteProvider>
-      <Box  className="App" bgcolor={"background.default"} color={"text.primary"}>
+  // <FavoriteProvider>
+    <RecoilRoot>
+       <Box  className="App" bgcolor={"background.default"} color={"text.primary"}>
         <Navbar/>
         <Routes>
           <Route path="/" element={<Home/>}/>
@@ -37,7 +39,9 @@ function App() {
             <Route path="/favorites" element={<Favorites/>}/>
         </Routes>
       </Box>
-</FavoriteProvider>
+    </RecoilRoot>
+  // </FavoriteProvider>
+
     
   )
 }

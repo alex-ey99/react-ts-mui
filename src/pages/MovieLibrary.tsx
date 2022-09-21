@@ -2,7 +2,8 @@
 import { Search} from "@mui/icons-material";
 import {Box,Grid,IconButton, TextField, Typography } from "@mui/material";
 import React, {useState } from "react";
-import { Movie, MovieInterface} from "../components/Movie";
+import { Movie} from "../components/Movie";
+import { MovieInterface } from "../Interfaces/MovieInterface";
 
 
 

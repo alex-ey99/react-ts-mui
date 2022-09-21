@@ -3,55 +3,24 @@ import styled from "@emotion/styled";
 import { Favorite } from "@mui/icons-material";
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Modal, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useFavorite } from "../context/FavoriteContext";
+import { useRecoilState, useSetRecoilState } from "recoil";
+// import { useFavorite } from "../context/FavoriteContext";
+import { favMoviesState, favState } from "../context/FavState";
+import { addMovie, increaseCount } from "../functions/favoriteMovie";
+import { decreaseCount, deleteMovie } from "../functions/unfavoriteMovie";
+import { MovieDetails, movieExample } from "../Interfaces/MovieDetails";
+import { MovieInterface } from "../Interfaces/MovieInterface";
 
 
 
-export interface MovieInterface{
-    "Title": string;
-    "Year": string;
-    "imdbID": string;
-    "Type": string;
-    "Poster": string;
-}
-export interface MovieDetails{
-    "Title": string;
-    "Year": string;
-    "Rated": string;
-    "Released": string;
-    "Runtime": string;
-    "Genre": string;
-    "Director": string;
-    "Writer": string;
-    "Actors": string;
-    "Plot": string;
-    "Language": string;
-    "Country": string;
-    "Awards": string;
-    "Poster": string;
-}
+
 export const CustomModal = styled(Modal)({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
 });
 
-export const movieExample:MovieDetails = {
-    "Title": "string",
-    "Year": "string",
-    "Rated": "string",
-    "Released": "string",
-    "Runtime": "string",
-    "Genre": "string",
-    "Director": "string",
-    "Writer": "string",
-    "Actors": "string",
-    "Plot": "string",
-    "Language": "string",
-    "Country": "string",
-    "Awards": "string",
-    "Poster": "string"
-}
+
 type favoriteType = "primary" | "error";
 
 export function Movie(movie:MovieInterface){
@@ -69,10 +38,14 @@ export function Movie(movie:MovieInterface){
     
     const [open,setOpen] = useState<boolean>(false);
     const [favorite,setFavorite] = useState<favoriteType>("primary");
-    const fav = useFavorite();
+    // const fav = useFavorite();
+
+
+    const [favoriteMovies, setFavoriteMovies] = useRecoilState(favMoviesState);
+    const setFavoriteCount = useSetRecoilState(favState);
 
     useEffect(()=>{
-        if(fav.favMovies.find((element)=> element.imdbID===movie.imdbID)!=null){
+        if(favoriteMovies.find((element)=> element.imdbID===movie.imdbID)!=null){
             setFavorite("error");
         }
         else{
@@ -80,18 +53,31 @@ export function Movie(movie:MovieInterface){
         }
     },[movie])
 
-    function handleClick(){
-       if(favorite==="primary"){
-        setFavorite("error");
-        fav.increaseFav(movie);
+    // function handleClick(){
+    //    if(favorite==="primary"){
+    //     setFavorite("error");
+    //     fav.increaseFav(movie);
 
-       }
-       else{
-        setFavorite("primary");
-        fav.decreaseFav(movie);
-       }
-       
+    //    }
+    //    else{
+    //     setFavorite("primary");
+    //     fav.decreaseFav(movie);
+    //    }  
+    // }
+    
+    function handleClickRecoil(){
+        if(favorite==="primary"){
+            setFavorite("error");
+            increaseCount(movie, favoriteMovies, setFavoriteCount);
+            addMovie(movie, setFavoriteMovies);
+           }
+           else{
+            setFavorite("primary");
+            decreaseCount(movie, favoriteMovies, setFavoriteCount);
+            deleteMovie(movie, setFavoriteMovies);
+           }
     }
+
     return(
 
         <Card sx={{backgroundColor:"#DFF6FF", margin:"10px", width:"300px", display:"inline-block"}}>
@@ -110,7 +96,7 @@ export function Movie(movie:MovieInterface){
             </CardContent>
             <CardActions>
                 <Button size="small" onClick={()=>getMovieDetails(movie.imdbID)}> Learn More</Button>
-                <Button color={favorite} onClick={()=>handleClick()} variant="outlined" startIcon={<Favorite />}>
+                <Button color={favorite} onClick={()=>handleClickRecoil()} variant="outlined" startIcon={<Favorite />}>
                     Favorite
                 </Button>
                 <CustomModal
