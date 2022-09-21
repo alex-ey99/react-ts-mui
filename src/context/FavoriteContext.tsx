@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { MovieInterface } from "../Interfaces/MovieInterface";
 
+/////////////////No longer used, now state management is handled by Recoil in the FavState.tsx//////////////////
 
 type FavoriteProviderProps = {
     children: ReactNode;

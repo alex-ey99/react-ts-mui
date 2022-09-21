@@ -1,4 +1,3 @@
-
 import { Search} from "@mui/icons-material";
 import {Box,Grid,IconButton, TextField, Typography } from "@mui/material";
 import React, {useState } from "react";
@@ -19,11 +18,11 @@ export function MovieLibrary() {
         const data =  await response.json();
         const results:MovieInterface[] = data.Search;
         if(results===undefined){
-            console.log("None found");
+            // console.log("None found");
             setShow(true);
         }
         else{
-            console.log(results);
+            // console.log(results);
             setShow(false);
             setMovies(results);
         }
