@@ -77,7 +77,7 @@ export function MovieLibrary() {
             >
                 {movies.map((movie, index)=>(
                 <Grid item >
-                    <Movie key={index} {...movie}/>
+                    <Movie key={movie.imdbID} {...movie}/>
                 </Grid>
             ))}
             </Grid>

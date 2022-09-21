@@ -21,7 +21,7 @@ export function Favorites(){
             >
                 {favoriteMovies.map((movie, index)=>(
                     <Grid item>
-                        <FavMovie key={index} {...movie} />
+                        <FavMovie key={movie.imdbID} {...movie} />
                     </Grid>
                 ))}
             </Grid>
