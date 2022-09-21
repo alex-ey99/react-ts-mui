@@ -1,6 +1,6 @@
 
 import { Search} from "@mui/icons-material";
-import {Box,IconButton, TextField, Typography } from "@mui/material";
+import {Box,Grid,IconButton, TextField, Typography } from "@mui/material";
 import React, {useState } from "react";
 import { Movie, MovieInterface} from "../components/Movie";
 
@@ -40,33 +40,47 @@ export function MovieLibrary() {
    
     return (
 
-        <Box sx={{margin:"20px 20px"}}>
-            
+        <Box sx={{margin:"20px 20px", padding:"0px 0px 10px 0px"}}>
             <Typography variant="h3" sx={{padding:"20px"}}>Movie Library</Typography>
-            {show && <Typography  sx={{display:"block", color:"red", margin:"0px 20px"}}>No movie found</Typography>}
-            <TextField 
-                id="outlined-basic" 
-                label="Search for Movie" 
-                variant="outlined" 
-                value={search} 
-                onChange={(e)=>{setSearch(e.target.value)}} 
-                onKeyDown={keyDownHandler}
-                sx={{display:"inline-block", margin:"20px"}}
-                />
-                
-            <IconButton sx={{margin:"25px 0px 0px 0px", border:"solid"}}  onClick={()=>{if(search!==""){getMovies(search)}}}>
-                <Search />
-            </IconButton>
-            
+            <Grid 
+            container
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            >
+                <Grid item xs={12}>
+                    {show && <Typography  sx={{display:"block", textAlign:"center" ,color:"red"}}>No movie found</Typography>}
+                </Grid>
+                <Grid item>
+                    <TextField 
+                        id="outlined-basic" 
+                        label="Search for Movie" 
+                        variant="outlined" 
+                        value={search} 
+                        onChange={(e)=>{setSearch(e.target.value)}} 
+                        onKeyDown={keyDownHandler}
+                        sx={{display:"inline-block", margin:"20px"}}
+                        />
+                </Grid>
+                <Grid item>
+                    <IconButton sx={{ border:"solid"}}  onClick={()=>{if(search!==""){getMovies(search)}}}>
+                        <Search />
+                    </IconButton>
+                </Grid>
+            </Grid>
             <br></br>
-            
-
-
-            {movies.map((movie, index)=>(
-                <Movie key={index} {...movie}/>
+            <Grid 
+            container 
+            direction="row"
+            justifyContent="center"
+            alignItems="center"
+            >
+                {movies.map((movie, index)=>(
+                <Grid item >
+                    <Movie key={index} {...movie}/>
+                </Grid>
             ))}
-
+            </Grid>
         </Box>
-
     )
 }

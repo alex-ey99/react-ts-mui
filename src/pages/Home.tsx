@@ -6,7 +6,7 @@ import { Box, Typography } from "@mui/material";
 
 export function Home() {
     return (
-        <Box sx={{margin:"20px 20px"}}>
+        <Box sx={{margin:"20px 20px", padding:"0px 0px 10px 0px"}}>
             <Typography variant="h3" sx={{padding:"20px"}}>Home</Typography>
             <ol>
                 <li><Typography>Search for movies in the Movie Library section</Typography></li>
