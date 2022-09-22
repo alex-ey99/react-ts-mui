@@ -14,19 +14,25 @@ export function MovieLibrary() {
     const [show, setShow] = useState<boolean>(false);
    
     async function getMovies(title:string){
-        const response = await fetch(`${API_URL}${title}&type=movie`);
-        const data =  await response.json();
-        const results:MovieInterface[] = data.Search;
-        if(results===undefined){
-            // console.log("None found");
-            setShow(true);
-        }
-        else{
-            // console.log(results);
-            setShow(false);
-            setMovies(results);
-        }
-        
+        fetch(`${API_URL}${title}&type=movie`)
+            .then(response => {
+                return response.json();
+            })
+            .then(data=> {
+                const results:MovieInterface[] = data.Search;
+                if(results===undefined){
+                    // console.log("None found");
+                    setShow(true);
+                }
+                else{
+                    // console.log(results);
+                    setShow(false);
+                    setMovies(results);
+                }
+
+            }).catch((error)=>{
+                console.log(error);
+            });
     }
     
     function keyDownHandler(event: React.KeyboardEvent<HTMLInputElement>){
@@ -75,9 +81,15 @@ export function MovieLibrary() {
             justifyContent="center"
             alignItems="center"
             >
-                {movies.map((movie, index)=>(
-                <Grid item >
-                    <Movie key={movie.imdbID} {...movie}/>
+                {movies.map((movie)=>(
+                <Grid item key={movie.imdbID} >
+                    <Movie 
+                    Title={movie.Title}
+                    Year={movie.Year}
+                    imdbID={movie.imdbID}
+                    Type={movie.imdbID}
+                    Poster={movie.Poster}
+                    />
                 </Grid>
             ))}
             </Grid>

@@ -19,9 +19,15 @@ export function Favorites(){
             justifyContent="center"
             alignItems="center"
             >
-                {favoriteMovies.map((movie, index)=>(
-                    <Grid item>
-                        <FavMovie key={movie.imdbID} {...movie} />
+                {favoriteMovies.map((movie)=>(
+                    <Grid item key={movie.imdbID} >
+                        <FavMovie 
+                            Title={movie.Title}
+                            Year={movie.Year}
+                            imdbID={movie.imdbID}
+                            Type={movie.imdbID}
+                            Poster={movie.Poster}
+                        />
                     </Grid>
                 ))}
             </Grid>

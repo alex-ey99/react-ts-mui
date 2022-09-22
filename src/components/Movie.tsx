@@ -69,7 +69,13 @@ export function Movie(movie:MovieInterface){
     return(
 
         <Card sx={{backgroundColor:"#DFF6FF", margin:"10px", width:"300px", display:"inline-block"}}>
-            <MovieCardTop {...movie}/>
+            <MovieCardTop 
+                Title={movie.Title}
+                Year={movie.Year}
+                imdbID={movie.imdbID}
+                Type={movie.imdbID}
+                Poster={movie.Poster}
+            />
             <CardActions>
                 <Button size="small" onClick={()=>getMovieDetails(movie.imdbID)}> Learn More</Button>
                 <Button color={favorite} onClick={()=>handleClickRecoil()} variant="outlined" startIcon={<Favorite />}>
