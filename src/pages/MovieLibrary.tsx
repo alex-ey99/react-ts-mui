@@ -25,9 +25,10 @@ export function MovieLibrary() {
                     setShow(true);
                 }
                 else{
-                    // console.log(results);
+                    // console.log(results);  
                     setShow(false);
                     setMovies(results);
+                    
                 }
             })
             .catch(function (error) {
@@ -112,7 +113,7 @@ export function MovieLibrary() {
                     Title={movie.Title}
                     Year={movie.Year}
                     imdbID={movie.imdbID}
-                    Type={movie.imdbID}
+                    Type={movie.Type}
                     Poster={movie.Poster}
                     />
                 </Grid>

@@ -12,7 +12,7 @@ export function MovieCardTop(movie:MovieInterface){
                 alt={movie.Title}
             />
             <CardContent>
-                <Typography sx={{fontSize: 16}} color="text.secondary" gutterBottom>Movie</Typography>
+                <Typography sx={{fontSize: 16}} color="text.secondary" gutterBottom>{movie.Type}</Typography>
                 <Typography variant="h5" sx={{overflow:"hidden", whiteSpace:"nowrap", textOverflow:"ellipsis"}}>{movie.Title}</Typography>
                 <Typography color="text.secondary" component="div" >{movie.Year}</Typography>
                 
