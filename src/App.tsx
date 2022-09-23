@@ -8,6 +8,7 @@ import { Box, createTheme} from '@mui/material';
 import { Favorites } from './pages/Favorites';
 // import { FavoriteProvider } from './context/FavoriteContext';
 import { RecoilRoot } from "recoil";
+import { Admin } from "./pages/Admin";
 
 
 // https://mui.com/material-ui/customization/default-theme/
@@ -37,6 +38,7 @@ function App() {
             <Route path="/movielibrary" element={<MovieLibrary/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="/favorites" element={<Favorites/>}/>
+            <Route path="/admin" element ={<Admin/>}/>
         </Routes>
       </Box>
     </RecoilRoot>
