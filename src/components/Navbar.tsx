@@ -29,6 +29,7 @@ export function Navbar(){
                     <Button component={NavLink} to="/">Home</Button>
                     <Button component={NavLink} to="/about" >About</Button>
                     <Button component={NavLink} to="/movielibrary" >Movie Library</Button>
+                    <Button component={NavLink} to="/admin" >Admin</Button>
                     {/* <Badge component={NavLink} to="/favorites" badgeContent={fav.favCount} color="error">
                         <Favorite color="action"/>
                     </Badge> */}
