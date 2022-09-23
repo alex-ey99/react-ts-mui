@@ -3,7 +3,7 @@ import {Box,Grid,IconButton, TextField, Typography } from "@mui/material";
 import React, {useState } from "react";
 import { Movie} from "../components/Movie";
 import { MovieInterface } from "../Interfaces/MovieInterface";
-
+import axios from 'axios';
 
 
 export function MovieLibrary() {
@@ -13,13 +13,13 @@ export function MovieLibrary() {
     const [search,setSearch] = useState<string>("");
     const [show, setShow] = useState<boolean>(false);
    
-    async function getMovies(title:string){
-        fetch(`${API_URL}${title}&type=movie`)
-            .then(response => {
-                return response.json();
-            })
-            .then(data=> {
-                const results:MovieInterface[] = data.Search;
+    function getMovies(title:string){
+
+        axios.get(`${API_URL}${title}&type=movie`)
+            .then(function (response) {
+                // handle success
+                // console.log(response);
+                const results:MovieInterface[] = response.data.Search;
                 if(results===undefined){
                     // console.log("None found");
                     setShow(true);
@@ -29,10 +29,35 @@ export function MovieLibrary() {
                     setShow(false);
                     setMovies(results);
                 }
-
-            }).catch((error)=>{
+            })
+            .catch(function (error) {
+                // handle error
                 console.log(error);
+            })
+            .then(function () {
+                // always executed
             });
+
+        // fetch(`${API_URL}${title}&type=movie`)
+        //     .then(response => {
+        //         return response.json();
+        //     })
+        //     .then(data=> {
+        //         const results:MovieInterface[] = data.Search;
+        //         if(results===undefined){
+        //             // console.log("None found");
+        //             setShow(true);
+        //         }
+        //         else{
+        //             // console.log(results);
+        //             setShow(false);
+        //             setMovies(results);
+        //         }
+
+        //     }).catch((error)=>{
+        //         console.log(error);
+        //     });
+        
     }
     
     function keyDownHandler(event: React.KeyboardEvent<HTMLInputElement>){

@@ -1,5 +1,6 @@
 import { Favorite } from "@mui/icons-material";
 import {Button, Card, CardActions} from "@mui/material";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 // import { useFavorite } from "../context/FavoriteContext";
@@ -23,13 +24,30 @@ export function Movie(movie:MovieInterface){
     const setFavoriteCount = useSetRecoilState(favState);
     // const fav = useFavorite();
 
-    async function getMovieDetails(movieId:string){
-        const response = await fetch(`${API_URL}${movieId}`);
-        const data =  await response.json();
-        const result:MovieDetails = data;
-        console.log(result);
-        setMovieDetails(result);
-        setOpen(true);
+    
+    function getMovieDetails(movieId:string){
+        // const response = await fetch(`${API_URL}${movieId}`);
+        // const data =  await response.json();
+        // const result:MovieDetails = data;
+        // console.log(result);
+        // setMovieDetails(result);
+        // setOpen(true);
+
+        axios.get(`${API_URL}${movieId}`)
+            .then(function (response) {
+                // handle success
+                // console.log(response);
+                const result:MovieDetails = response.data;
+                setMovieDetails(result);
+                setOpen(true);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .then(function () {
+                // always executed
+            });
     }
     
     useEffect(()=>{
