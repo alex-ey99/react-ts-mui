@@ -1,7 +1,8 @@
 import { CardContent, CardMedia, Typography } from "@mui/material";
 import { MovieInterface } from "../Interfaces/MovieInterface";
+import {memo} from 'react';
 
-export function MovieCardTop(movie:MovieInterface){
+function MovieCardTop(movie:MovieInterface){
     return(
         <>
         <CardMedia
@@ -21,3 +22,5 @@ export function MovieCardTop(movie:MovieInterface){
         
     )
 }
+
+export default memo(MovieCardTop);

@@ -9,8 +9,8 @@ import { addMovie, increaseCount } from "../functions/favoriteMovie";
 import { decreaseCount, deleteMovie } from "../functions/unfavoriteMovie";
 import { MovieDetails, movieExample } from "../Interfaces/MovieDetails";
 import { MovieInterface } from "../Interfaces/MovieInterface";
-import { MovieCardTop } from "./MovieCardTop";
-import { MovieShowMore } from "./MovieShowMore";
+import MovieCardTop  from "./MovieCardTop";
+import MovieShowMore  from "./MovieShowMore";
 
 
 type favoriteType = "primary" | "error";

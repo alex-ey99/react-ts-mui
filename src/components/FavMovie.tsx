@@ -7,8 +7,8 @@ import { favMoviesState, favState } from "../context/FavState";
 import { decreaseCount, deleteMovie } from "../functions/unfavoriteMovie";
 import { MovieDetails, movieExample } from "../Interfaces/MovieDetails";
 import { MovieInterface } from "../Interfaces/MovieInterface";
-import { MovieCardTop } from "./MovieCardTop";
-import { MovieShowMore } from "./MovieShowMore";
+import MovieCardTop from "./MovieCardTop";
+import MovieShowMore  from "./MovieShowMore";
 
 
 export function FavMovie(movie:MovieInterface){

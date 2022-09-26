@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import { memo } from "react";
 import { MovieDetails } from "../Interfaces/MovieDetails";
 import { CustomModal } from "./CustomModal";
 
@@ -9,7 +10,7 @@ type movieShowMoreProp = {
     setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export function MovieShowMore({movieDet, open, setOpen}:movieShowMoreProp){
+function MovieShowMore({movieDet, open, setOpen}:movieShowMoreProp){
     return(
         <CustomModal
                     open={open}
@@ -47,3 +48,5 @@ export function MovieShowMore({movieDet, open, setOpen}:movieShowMoreProp){
                 </CustomModal>
     )
 }
+
+export default memo(MovieShowMore);
